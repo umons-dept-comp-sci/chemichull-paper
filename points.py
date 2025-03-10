@@ -49,24 +49,28 @@ def get_RV07c(n, m):
 ##########
 
 
-def get_MV08(n, m, a, b, c):
+def get_MV08(n, m, a, b, c, d):
     return (
-        a + 2 * b,
-        (3 * n - 2 * m - 4 * a - 6 * b - (n % 2)) / 2,
-        (4 * m - 3 * n - 2 * (a + b) - (1 + 2 * c) * (n % 2)) / 2,
+        a + 2 * b + d,
+        (3 * n - 2 * m - (4 * a + 6 * b + 3 * d) + (d - 1) * (n % 2)) / 2,
+        (4 * m - 3 * n - (2 * a + 2 * b + d) + (d - 2 * c - 1) * (n % 2)) / 2,
     )
 
 
 def get_RV08a(n, m):
-    return get_MV08(n, m, 1, 0, 0)
+    return get_MV08(n, m, 1, 0, 0, 0)
 
 
 def get_RV08b(n, m):
-    return get_MV08(n, m, 0, 1, 0)
+    return get_MV08(n, m, 0, 1, 0, 0)
 
 
 def get_RV08c(n, m):
-    return get_MV08(n, m, 0, 0, 1)
+    return get_MV08(n, m, 0, 0, 1, 0)
+
+
+def get_RV08d(n, m):
+    return get_MV08(n, m, 0, 0, 0, 1)
 
 
 """
@@ -231,3 +235,30 @@ def get_RV_P7_8(n, m):  # created only for (7, 8)
 
 def get_RV_P8_8(n, m):  # created only for (8, 8)
     return (2, 0, 1)
+
+
+points = [
+    "V01",
+    "V02",
+    "V03",
+    "V06",
+    "V07a",
+    "V07b",
+    "V07c",
+    "V08a",
+    "V08b",
+    "V08c",
+    "V08d",
+    "V09a",
+    "V09b",
+    "V09c",
+    "V10a",
+    "V10b",
+    "V10c",
+    "V11a",
+    "V11b",
+    "V11c",
+    "V12a",
+    "V12b",
+    "V12c",
+]
