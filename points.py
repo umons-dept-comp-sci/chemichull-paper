@@ -1,49 +1,73 @@
 def get_RV01(n, m):
     return (0, 0, 0)
 
+
 def get_RV02(n, m):
     return (2, 0, 0)
+
 
 def get_RV03(n, m):
     return (0, 0, 1)
 
+
 def get_RV04(n, m):
-    return (0, (-5*m + 6*n - n%3)/3, 0)
+    return (0, (-5 * m + 6 * n - n % 3) / 3, 0)
+
 
 def get_RV05(n, m):
-    return (1, -m + 3*n/2 - 3/2, 2*m - 3*n/2 - 1/2)
+    return (1, -m + 3 * n / 2 - 3 / 2, 2 * m - 3 * n / 2 - 1 / 2)
+
 
 def get_RV06(n, m):
-    return (0, 0, 5*m - 6*n)
+    return (0, 0, 5 * m - 6 * n)
 
 
 ##########
 
+
 def get_MV07(n, m, a, b, c):
-    return ((6*n-5*m +(b-3*a)*((m-2*n)%4) - (c*(-5*m + 6*n))%4)/4, a*((m-2*n)%4), b*((m-2*n)%4))  
+    return (
+        (6 * n - 5 * m + (b - 3 * a) * ((m - 2 * n) % 4) - (c * (-5 * m + 6 * n)) % 4)
+        / 4,
+        a * ((m - 2 * n) % 4),
+        b * ((m - 2 * n) % 4),
+    )
+
 
 def get_RV07a(n, m):
     return get_MV07(n, m, 1, 0, 0)
 
+
 def get_RV07b(n, m):
-    return get_MV07(n, m, 0, 1, 0)  
+    return get_MV07(n, m, 0, 1, 0)
+
 
 def get_RV07c(n, m):
-    return get_MV07(n, m, 0, 0, 1)  
-    
+    return get_MV07(n, m, 0, 0, 1)
+
+
 ##########
 
+
 def get_MV08(n, m, a, b, c):
-    return (a+2*b, (3*n-2*m-4*a-6*b-(n%2))/2, (4*m-3*n-2*(a+b)-(1+2*c)*(n%2))/2)    
+    return (
+        a + 2 * b,
+        (3 * n - 2 * m - 4 * a - 6 * b - (n % 2)) / 2,
+        (4 * m - 3 * n - 2 * (a + b) - (1 + 2 * c) * (n % 2)) / 2,
+    )
+
 
 def get_RV08a(n, m):
     return get_MV08(n, m, 1, 0, 0)
 
+
 def get_RV08b(n, m):
     return get_MV08(n, m, 0, 1, 0)
 
+
 def get_RV08c(n, m):
     return get_MV08(n, m, 0, 0, 1)
+
 
 """
 def get_RV15(n, m):
@@ -58,17 +82,26 @@ def get_RV03(n, m):
 
 ##########
 
+
 def get_MV09(n, m, a, b, c):
-    return ((a+b)*(3*m - 3*n - 1 -a), (a+c)*(3*m - 3*n - 2), 6*m - 6*n - 1 -2*c)
+    return (
+        (a + b) * (3 * m - 3 * n - 1 - a),
+        (a + c) * (3 * m - 3 * n - 2),
+        6 * m - 6 * n - 1 - 2 * c,
+    )
+
 
 def get_RV09a(n, m):
     return get_MV09(n, m, 1, 0, 0)
 
+
 def get_RV09b(n, m):
     return get_MV09(n, m, 0, 1, 0)
 
+
 def get_RV09c(n, m):
     return get_MV09(n, m, 0, 0, 1)
+
 
 """
 
@@ -85,17 +118,26 @@ def get_RV11(n, m):
 
 ##########
 
+
 def get_MV10(n, m, a, b, c):
-    return (b*(m%3), (-5*m + 6*n - ((a+4*b)*(m%3)) + c*((-m)%3))/3, c*((-m)%3))
+    return (
+        b * (m % 3),
+        (-5 * m + 6 * n - ((a + 4 * b) * (m % 3)) + c * ((-m) % 3)) / 3,
+        c * ((-m) % 3),
+    )
+
 
 def get_RV10a(n, m):
     return get_MV10(n, m, 1, 0, 0)
 
+
 def get_RV10b(n, m):
     return get_MV10(n, m, 0, 1, 0)
 
+
 def get_RV10c(n, m):
     return get_MV10(n, m, 0, 0, 1)
+
 
 """
 def get_RV07(n, m):
@@ -110,17 +152,26 @@ def get_RV20(n, m):
 
 ##########
 
+
 def get_MV11(n, m, a, b, c):
-    return (-2*m/3 + n - (a+c)*((m%3))/3 - ((2*b)*((-m)%3))/3, b*((-m)%3), 7*m/3 - 2*n - ((4*a+c)*(m%3))/3 + (b*((-m)%3))/3)
+    return (
+        -2 * m / 3 + n - (a + c) * (m % 3) / 3 - ((2 * b) * ((-m) % 3)) / 3,
+        b * ((-m) % 3),
+        7 * m / 3 - 2 * n - ((4 * a + c) * (m % 3)) / 3 + (b * ((-m) % 3)) / 3,
+    )
+
 
 def get_RV11a(n, m):
     return get_MV11(n, m, 1, 0, 0)
 
+
 def get_RV11b(n, m):
     return get_MV11(n, m, 0, 1, 0)
 
+
 def get_RV11c(n, m):
     return get_MV11(n, m, 0, 0, 1)
+
 
 """
 def get_RV22(n, m):
@@ -135,17 +186,26 @@ def get_RV18(n, m):
 
 ##########
 
+
 def get_MV12(n, m, a, b, c):
-    return (c, a * (-3*m + 3*n + 1), b * (3*m - 3*n - 1) + c * (3*m - 3*n + 1))
+    return (
+        c,
+        a * (-3 * m + 3 * n + 1),
+        b * (3 * m - 3 * n - 1) + c * (3 * m - 3 * n + 1),
+    )
+
 
 def get_RV12a(n, m):
     return get_MV12(n, m, 1, 0, 0)
 
+
 def get_RV12b(n, m):
     return get_MV12(n, m, 0, 1, 0)
 
+
 def get_RV12c(n, m):
     return get_MV12(n, m, 0, 0, 1)
+
 
 """
 def get_RV31(n, m):
@@ -161,23 +221,13 @@ def get_RV10(n, m):
 ##########
 
 
-def get_RV_P6_6(n, m): # created only for (6, 6)
+def get_RV_P6_6(n, m):  # created only for (6, 6)
     return (1, 1, 1)
 
-def get_RV_P7_8(n, m): # created only for (7, 8)
+
+def get_RV_P7_8(n, m):  # created only for (7, 8)
     return (1, 0, 3)
 
-def get_RV_P8_8(n, m): # created only for (8, 8)
-    return (2, 0, 1)
 
-def get_point(name):
-    import inspect as ins
-    import sympy as sp
-    n, m = sp.symbols('n m')
-    func_name = f"get_R{name}"
-    mod = __import__(__name__)
-    func = getattr(mod, func_name)
-    if callable(func):
-        return func(n, m)
-    else:
-        raise Exception("Function not found")
+def get_RV_P8_8(n, m):  # created only for (8, 8)
+    return (2, 0, 1)
