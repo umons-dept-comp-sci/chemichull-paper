@@ -1,0 +1,258 @@
+Fam1, G2 G5 G11 G21a
+    Valid when: [n == 5, m == 5]
+    Vertices:  ['V01', 'V04', 'V07c', 'V08c']
+Fam2, G5 G11 G15 G17
+    Valid when: [n == 6, m == 5]
+    Vertices:  ['V02', 'V07a', 'V08a', 'V08c']
+Fam3, G1 G2 G5 G14 G21b
+    Valid when: [n == 6, m == 6]
+    Vertices:  ['V01', 'V04', 'V07c', 'V08c', 'V_P6_6']
+Fam4, G1 G2 G3 G7 G12
+    Valid when: [n == 6, m == 7]
+    Vertices:  ['V01', 'V03', 'V07b', 'V08c', 'V10c']
+Fam5, G1 G5 G6 G15
+    Valid when: [n == 7, m == 6]
+    Vertices:  ['V02', 'V05', 'V07a', 'V08c']
+Fam6, G1 G2 G3 G5 G10 G13 G18 G21c
+    Valid when: [n == 7, m == 7]
+    Vertices:  ['V01', 'V04', 'V05', 'V07a', 'V07b', 'V07c', 'V08c']
+Fam7, G1 G2 G3 G6 G9 G14 G16
+    Valid when: [n == 7, m == 8]
+    Vertices:  ['V01', 'V03', 'V05', 'V07b', 'V08c', 'V09c', 'V10c', 'V_P7_8']
+Fam8, G1 G5 G10 G12 G15 G17 G20
+    Valid when: [n == 8, m == 7]
+    Vertices:  ['V02', 'V07a', 'V07c', 'V08b', 'V08c', 'V10a']
+Fam9, G1 G2 G3 G4 G5 G9 G11 G21d
+    Valid when: [n == 8, m == 8]
+    Vertices:  ['V01', 'V02', 'V04', 'V08b', 'V08c', 'V10c', 'V_P8_8']
+Fam10, G1 G2 G3 G4 G7 G13 G16
+    Valid when: [n == 8, m == 9]
+    Vertices:  ['V01', 'V03', 'V07a', 'V07b', 'V08a', 'V08b', 'V08c', 'V09c']
+Fam11, G1 G5 G6 G11 G14 G15 G19
+    Valid when: [n == 9, m == 8]
+    Vertices:  ['V02', 'V05', 'V07a', 'V07c', 'V08c', 'V10a', 'V11b']
+Fam12, G1 G2 G3 G5 G6 G9 G11 G14 G15 G19
+    Valid when: [n >= 21, m >= 0, n%2 == 1, m%3 == 2, (m - 2*n)%4 == 2, m == n - 1]
+    Vertices:  ['V02', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12a']
+Fam13, G1 G2 G3 G4 G5 G12 G18
+    Valid when: [n >= 9, m >= 0, n%2 == 1, m%3 == 0, (m - 2*n)%4 == 3, m == n]
+    Vertices:  ['V01', 'V04', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V11a']
+Fam14, G1 G2 G3 G4 G5 G6 G8 G10 G16
+    Valid when: [n >= 9, m >= 0, n%2 == 1, m%3 == 1, (m - 2*n)%4 == 0, m == n + 1]
+    Vertices:  ['V01', 'V03', 'V05', 'V07a', 'V08c', 'V09a', 'V09b', 'V09c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam15, G1 G2 G3 G5 G13 G15 G17
+    Valid when: [n >= 10, m >= 0, n%2 == 0, m%3 == 0, (m - 2*n)%4 == 1, m == n - 1]
+    Vertices:  ['V02', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V11a', 'V12a']
+Fam16, G1 G2 G3 G4 G5 G8 G10 G14
+    Valid when: [n >= 10, m >= 0, n%2 == 0, m%3 == 1, (m - 2*n)%4 == 2, m == n]
+    Vertices:  ['V01', 'V04', 'V07a', 'V07b', 'V07c', 'V08c', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam17, G1 G2 G3 G4 G5 G7 G9 G11 G12 G16
+    Valid when: [n >= 10, m >= 0, n%2 == 0, m%3 == 2, (m - 2*n)%4 == 3, m == n + 1]
+    Vertices:  ['V01', 'V03', 'V07a', 'V07b', 'V07c', 'V08c', 'V09a', 'V09b', 'V09c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam18, G1 G2 G3 G5 G6 G8 G10 G15 G20
+    Valid when: [n >= 11, m >= 0, n%2 == 1, m%3 == 1, (m - 2*n)%4 == 0, m == n - 1]
+    Vertices:  ['V02', 'V05', 'V07a', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12a']
+Fam19, G1 G2 G3 G4 G5 G9 G11 G13 G18
+    Valid when: [n >= 11, m >= 0, n%2 == 1, m%3 == 2, (m - 2*n)%4 == 1, m == n]
+    Vertices:  ['V01', 'V04', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam20, G1 G2 G3 G4 G5 G6 G14 G16
+    Valid when: [n >= 11, m >= 0, n%2 == 1, m%3 == 0, (m - 2*n)%4 == 2, m == n + 1]
+    Vertices:  ['V01', 'V03', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V09a', 'V09b', 'V09c', 'V10a', 'V11a']
+Fam21, G1 G2 G3 G5 G9 G11 G12 G15 G17 G19
+    Valid when: [n >= 12, m >= 0, n%2 == 0, m%3 == 2, (m - 2*n)%4 == 3, m == n - 1]
+    Vertices:  ['V02', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12a']
+Fam22, G1 G2 G3 G4 G5
+    Valid when: [n >= 12, m >= 0, n%2 == 0, m%3 == 0, (m - 2*n)%4 == 0, m == n]
+    Vertices:  ['V01', 'V04', 'V07a', 'V08c', 'V11a']
+Fam23, G1 G2 G3 G4 G5 G7 G8 G10 G13 G16
+    Valid when: [n >= 12, m >= 0, n%2 == 0, m%3 == 1, (m - 2*n)%4 == 1, m == n + 1]
+    Vertices:  ['V01', 'V03', 'V07a', 'V07b', 'V07c', 'V08c', 'V09a', 'V09b', 'V09c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam24, G1 G2 G3 G5 G6 G14 G15
+    Valid when: [n >= 13, m >= 0, n%2 == 1, m%3 == 0, (m - 2*n)%4 == 2, m == n - 1]
+    Vertices:  ['V02', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V11a', 'V12a']
+Fam25, G1 G2 G3 G4 G5 G8 G10 G12 G18
+    Valid when: [n >= 13, m >= 0, n%2 == 1, m%3 == 1, (m - 2*n)%4 == 3, m == n]
+    Vertices:  ['V01', 'V04', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam26, G1 G2 G3 G4 G5 G6 G9 G11 G16
+    Valid when: [n >= 13, m >= 0, n%2 == 1, m%3 == 2, (m - 2*n)%4 == 0, m == n + 1]
+    Vertices:  ['V01', 'V03', 'V05', 'V07a', 'V08c', 'V09a', 'V09b', 'V09c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam27, G1 G2 G3 G5 G8 G10 G13 G15 G17 G20
+    Valid when: [n >= 14, m >= 0, n%2 == 0, m%3 == 1, (m - 2*n)%4 == 1, m == n - 1]
+    Vertices:  ['V02', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12a']
+Fam28, G1 G2 G3 G4 G5 G9 G11 G14
+    Valid when: [n >= 14, m >= 0, n%2 == 0, m%3 == 2, (m - 2*n)%4 == 2, m == n]
+    Vertices:  ['V01', 'V04', 'V07a', 'V07b', 'V07c', 'V08c', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam29, G1 G2 G3 G4 G5 G7 G12 G16
+    Valid when: [n >= 14, m >= 0, n%2 == 0, m%3 == 0, (m - 2*n)%4 == 3, m == n + 1]
+    Vertices:  ['V01', 'V03', 'V07a', 'V07b', 'V07c', 'V08c', 'V09a', 'V09b', 'V09c', 'V10a', 'V11a']
+Fam30, G1 G2 G3 G5 G6 G9 G11 G15 G19
+    Valid when: [n >= 15, m >= 0, n%2 == 1, m%3 == 2, (m - 2*n)%4 == 0, m == n - 1]
+    Vertices:  ['V02', 'V05', 'V07a', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12a']
+Fam31, G1 G2 G3 G4 G5 G13 G18
+    Valid when: [n >= 15, m >= 0, n%2 == 1, m%3 == 0, (m - 2*n)%4 == 1, m == n]
+    Vertices:  ['V01', 'V04', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V11a']
+Fam32, G1 G2 G3 G4 G5 G6 G8 G10 G14 G16
+    Valid when: [n >= 15, m >= 0, n%2 == 1, m%3 == 1, (m - 2*n)%4 == 2, m == n + 1]
+    Vertices:  ['V01', 'V03', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V09a', 'V09b', 'V09c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam33, G1 G2 G3 G5 G12 G15 G17
+    Valid when: [n >= 16, m >= 0, n%2 == 0, m%3 == 0, (m - 2*n)%4 == 3, m == n - 1]
+    Vertices:  ['V02', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V11a', 'V12a']
+Fam34, G1 G2 G3 G4 G5 G8 G10
+    Valid when: [n >= 16, m >= 0, n%2 == 0, m%3 == 1, (m - 2*n)%4 == 0, m == n]
+    Vertices:  ['V01', 'V04', 'V07a', 'V08c', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam35, G1 G2 G3 G4 G5 G7 G9 G11 G13 G16
+    Valid when: [n >= 16, m >= 0, n%2 == 0, m%3 == 2, (m - 2*n)%4 == 1, m == n + 1]
+    Vertices:  ['V01', 'V03', 'V07a', 'V07b', 'V07c', 'V08c', 'V09a', 'V09b', 'V09c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam36, G1 G2 G3 G5 G6 G8 G10 G14 G15 G20
+    Valid when: [n >= 17, m >= 0, n%2 == 1, m%3 == 1, (m - 2*n)%4 == 2, m == n - 1]
+    Vertices:  ['V02', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12a']
+Fam37, G1 G2 G3 G4 G5 G9 G11 G12 G18
+    Valid when: [n >= 17, m >= 0, n%2 == 1, m%3 == 2, (m - 2*n)%4 == 3, m == n]
+    Vertices:  ['V01', 'V04', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam38, G1 G2 G3 G4 G5 G6 G16
+    Valid when: [n >= 17, m >= 0, n%2 == 1, m%3 == 0, (m - 2*n)%4 == 0, m == n + 1]
+    Vertices:  ['V01', 'V03', 'V05', 'V07a', 'V08c', 'V09a', 'V09b', 'V09c', 'V10a', 'V11a']
+Fam39, G1 G2 G3 G5 G9 G11 G13 G15 G17 G19
+    Valid when: [n >= 18, m >= 0, n%2 == 0, m%3 == 2, (m - 2*n)%4 == 1, m == n - 1]
+    Vertices:  ['V02', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12a']
+Fam40, G1 G2 G3 G4 G5 G14
+    Valid when: [n >= 18, m >= 0, n%2 == 0, m%3 == 0, (m - 2*n)%4 == 2, m == n]
+    Vertices:  ['V01', 'V04', 'V07a', 'V07b', 'V07c', 'V08c', 'V11a']
+Fam41, G1 G2 G3 G4 G5 G7 G8 G10 G12 G16
+    Valid when: [n >= 18, m >= 0, n%2 == 0, m%3 == 1, (m - 2*n)%4 == 3, m == n + 1]
+    Vertices:  ['V01', 'V03', 'V07a', 'V07b', 'V07c', 'V08c', 'V09a', 'V09b', 'V09c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam42, G1 G2 G3 G5 G6 G15
+    Valid when: [n >= 19, m >= 0, n%2 == 1, m%3 == 0, (m - 2*n)%4 == 0, m == n - 1]
+    Vertices:  ['V02', 'V05', 'V07a', 'V08c', 'V10a', 'V11a', 'V12a']
+Fam43, G1 G2 G3 G4 G5 G8 G10 G13 G18
+    Valid when: [n >= 19, m >= 0, n%2 == 1, m%3 == 1, (m - 2*n)%4 == 1, m == n]
+    Vertices:  ['V01', 'V04', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam44, G1 G2 G3 G4 G5 G6 G9 G11 G14 G16
+    Valid when: [n >= 19, m >= 0, n%2 == 1, m%3 == 2, (m - 2*n)%4 == 2, m == n + 1]
+    Vertices:  ['V01', 'V03', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V09a', 'V09b', 'V09c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam45, G1 G2 G3 G5 G8 G10 G12 G15 G17 G20
+    Valid when: [n >= 20, m >= 0, n%2 == 0, m%3 == 1, (m - 2*n)%4 == 3, m == n - 1]
+    Vertices:  ['V02', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12a']
+Fam46, G1 G2 G3 G4 G5 G9 G11
+    Valid when: [n >= 20, m >= 0, n%2 == 0, m%3 == 2, (m - 2*n)%4 == 0, m == n]
+    Vertices:  ['V01', 'V04', 'V07a', 'V08c', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c']
+Fam47, G1 G2 G3 G4 G5 G7 G13 G16
+    Valid when: [n >= 20, m >= 0, n%2 == 0, m%3 == 0, (m - 2*n)%4 == 1, m == n + 1]
+    Vertices:  ['V01', 'V03', 'V07a', 'V07b', 'V07c', 'V08c', 'V09a', 'V09b', 'V09c', 'V10a', 'V11a']
+Fam48, G1 G2 G3 G4 G6 G8 G12
+    Valid when: [n >= 11, m >= 0, n%2 == 1, m%3 == 1, (m - 2*n)%4 == 3, m == (6*n - n%5)/5]
+    Vertices:  ['V01', 'V05', 'V07b', 'V08c', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam49, G1 G2 G3 G4 G7b G9 G14
+    Valid when: [n >= 12, m >= 0, n%2 == 0, m%3 == 2, (m - 2*n)%4 == 2, m == (6*n - n%5)/5]
+    Vertices:  ['V01', 'V07b', 'V08c', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam50, G1 G2 G3 G4 G6 G13
+    Valid when: [n >= 13, m >= 0, n%2 == 1, m%3 == 0, (m - 2*n)%4 == 1, m == (6*n - n%5)/5]
+    Vertices:  ['V01', 'V05', 'V07a', 'V07b', 'V08c', 'V11a', 'V12b', 'V12c']
+Fam51, G1 G2 G3 G4 G7b G8 G12
+    Valid when: [n >= 16, m >= 0, n%2 == 0, m%3 == 1, (m - 2*n)%4 == 3, m == (6*n - n%5)/5]
+    Vertices:  ['V01', 'V07b', 'V08c', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam52, G1 G2 G3 G4 G6 G9 G14
+    Valid when: [n >= 17, m >= 0, n%2 == 1, m%3 == 2, (m - 2*n)%4 == 2, m == (6*n - n%5)/5]
+    Vertices:  ['V01', 'V05', 'V07b', 'V08c', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam53, G1 G2 G3 G4 G7b G13
+    Valid when: [n >= 18, m >= 0, n%2 == 0, m%3 == 0, (m - 2*n)%4 == 1, m == (6*n - n%5)/5]
+    Vertices:  ['V01', 'V07a', 'V07b', 'V08c', 'V11a', 'V12b', 'V12c']
+Fam54, G1 G2 G3 G6 G9
+    Valid when: [n >= 9, m >= 0, n%2 == 1, m%3 == 2, m != n, m >= (3*n)/2 - 2, m >= (6*n - 3)/5, m >= (6*n)/5]
+    Vertices:  ['V05', 'V06', 'V08a', 'V08c', 'V11a', 'V12b']
+Fam55, G1 G2 G3 G6
+    Valid when: [n >= 7, m >= 0, n%2 == 1, m%3 == 0, m != n, m >= (3*n)/2 - 2, m >= (6*n - 3)/5, m >= (6*n)/5]
+    Vertices:  ['V05', 'V06', 'V08c', 'V12b']
+Fam56, G1 G2 G3 G7b G8
+    Valid when: [n >= 8, m >= 0, n%2 == 0, m%3 == 1, m >= (3*n)/2 - 2, m >= (6*n - 3)/5, m >= (6*n)/5, m > n + 1]
+    Vertices:  ['V06', 'V08a', 'V08c', 'V11a', 'V12b']
+Fam57, G1 G2 G3 G4 G5 G6 G9 G11 G14
+    Valid when: [n >= 29, m >= 0, n%2 == 1, m%3 == 2, (m - 2*n)%4 == 2, m > n - 1, m > n, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam58, G1 G2 G3 G4 G5 G7b G13
+    Valid when: [n >= 30, m >= 0, n%2 == 0, m%3 == 0, (m - 2*n)%4 == 1, m > n - 1, m > n + 1, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V11a', 'V12b', 'V12c']
+Fam59, G1 G2 G3 G4 G5 G6
+    Valid when: [n >= 27, m >= 0, n%2 == 1, m%3 == 0, (m - 2*n)%4 == 0, m > n - 1, m > n, m < (3*n)/2 - 2, m < (6*n - 3)/5]
+    Vertices:  ['V01', 'V05', 'V07a', 'V08c', 'V10a', 'V11a', 'V12b', 'V12c']
+Fam60, G1 G2 G3 G4 G5 G7b G8 G10 G12
+    Valid when: [n >= 28, m >= 0, n%2 == 0, m%3 == 1, (m - 2*n)%4 == 3, m > n - 1, m > n + 1, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam61, G1 G2 G3 G4 G5 G6 G13
+    Valid when: [n >= 25, m >= 0, n%2 == 1, m%3 == 0, (m - 2*n)%4 == 1, m > n - 1, m > n, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V11a', 'V12b', 'V12c']
+Fam62, G1 G2 G3 G4 G5 G6 G8 G10 G14
+    Valid when: [n >= 25, m >= 0, n%2 == 1, m%3 == 1, (m - 2*n)%4 == 2, m > n - 1, m > n, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam63, G1 G2 G3 G4 G5 G7b G9 G11 G13
+    Valid when: [n >= 26, m >= 0, n%2 == 0, m%3 == 2, (m - 2*n)%4 == 1, m > n - 1, m > n + 1, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam64, G1 G2 G3 G4 G5 G6 G8 G10 G12
+    Valid when: [n >= 23, m >= 0, n%2 == 1, m%3 == 1, (m - 2*n)%4 == 3, m > n - 1, m > n, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam65, G1 G2 G3 G4 G5 G6 G9 G11
+    Valid when: [n >= 23, m >= 0, n%2 == 1, m%3 == 2, (m - 2*n)%4 == 0, m > n - 1, m > n, m < (3*n)/2 - 2, m < (6*n - 3)/5]
+    Vertices:  ['V01', 'V05', 'V07a', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam66, G1 G2 G3 G4 G5 G7b G9 G11 G14
+    Valid when: [n >= 24, m >= 0, n%2 == 0, m%3 == 2, (m - 2*n)%4 == 2, m > n - 1, m > n + 1, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam67, G1 G2 G3 G4 G5 G7b G12
+    Valid when: [n >= 24, m >= 0, n%2 == 0, m%3 == 0, (m - 2*n)%4 == 3, m > n - 1, m > n + 1, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V11a', 'V12b', 'V12c']
+Fam68, G1 G2 G3 G4 G5 G6 G9 G11 G13
+    Valid when: [n >= 21, m >= 0, n%2 == 1, m%3 == 2, (m - 2*n)%4 == 1, m > n - 1, m > n, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam69, G1 G2 G3 G4 G5 G6 G14
+    Valid when: [n >= 21, m >= 0, n%2 == 1, m%3 == 0, (m - 2*n)%4 == 2, m > n - 1, m > n, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V11a', 'V12b', 'V12c']
+Fam70, G1 G2 G3 G4 G5 G7b
+    Valid when: [n >= 22, m >= 0, n%2 == 0, m%3 == 0, (m - 2*n)%4 == 0, m > n - 1, m > n + 1, m < (3*n)/2 - 2, m < (6*n - 3)/5]
+    Vertices:  ['V01', 'V07a', 'V08c', 'V10a', 'V11a', 'V12b', 'V12c']
+Fam71, G1 G2 G3 G4 G5 G7b G8 G10 G13
+    Valid when: [n >= 22, m >= 0, n%2 == 0, m%3 == 1, (m - 2*n)%4 == 1, m > n - 1, m > n + 1, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam72, G1 G2 G3 G4 G5 G6 G12
+    Valid when: [n >= 19, m >= 0, n%2 == 1, m%3 == 0, (m - 2*n)%4 == 3, m > n - 1, m > n, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V11a', 'V12b', 'V12c']
+Fam73, G1 G2 G3 G4 G5 G6 G8 G10
+    Valid when: [n >= 19, m >= 0, n%2 == 1, m%3 == 1, (m - 2*n)%4 == 0, m > n - 1, m > n, m < (3*n)/2 - 2, m < (6*n - 3)/5]
+    Vertices:  ['V01', 'V05', 'V07a', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam74, G1 G2 G3 G4 G5 G7b G8 G10 G14
+    Valid when: [n >= 20, m >= 0, n%2 == 0, m%3 == 1, (m - 2*n)%4 == 2, m > n - 1, m > n + 1, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam75, G1 G2 G3 G4 G5 G7b G9 G11 G12
+    Valid when: [n >= 20, m >= 0, n%2 == 0, m%3 == 2, (m - 2*n)%4 == 3, m > n - 1, m > n + 1, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam76, G1 G2 G3 G4 G5 G6 G8 G10 G13
+    Valid when: [n >= 17, m >= 0, n%2 == 1, m%3 == 1, (m - 2*n)%4 == 1, m > n - 1, m > n, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam77, G1 G2 G3 G4 G5 G7b G9 G11
+    Valid when: [n >= 18, m >= 0, n%2 == 0, m%3 == 2, (m - 2*n)%4 == 0, m > n - 1, m > n + 1, m < (3*n)/2 - 2, m < (6*n - 3)/5]
+    Vertices:  ['V01', 'V07a', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam78, G1 G2 G3 G4 G5 G6 G9 G11 G12
+    Valid when: [n >= 15, m >= 0, n%2 == 1, m%3 == 2, (m - 2*n)%4 == 3, m > n - 1, m > n, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V05', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam79, G1 G2 G3 G4 G5 G7b G14
+    Valid when: [n >= 16, m >= 0, n%2 == 0, m%3 == 0, (m - 2*n)%4 == 2, m > n - 1, m > n + 1, m < (3*n)/2 - 2, m < (6*n - 3)/5, m < (6*n)/5]
+    Vertices:  ['V01', 'V07a', 'V07b', 'V07c', 'V08c', 'V10a', 'V11a', 'V12b', 'V12c']
+Fam80, G1 G2 G3 G4 G5 G7b G8 G10
+    Valid when: [n >= 14, m >= 0, n%2 == 0, m%3 == 1, (m - 2*n)%4 == 0, m > n - 1, m > n + 1, m < (3*n)/2 - 2, m < (6*n - 3)/5]
+    Vertices:  ['V01', 'V07a', 'V08c', 'V10a', 'V10b', 'V10c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam81, G1 G2 G3 G4 G6 G9
+    Valid when: [n >= 19, m >= 0, n%2 == 1, m%3 == 2, m > n - 1, m >= (6*n - 3)/5, m >= (6*n)/5, m > n, m < (3*n)/2 - 2]
+    Vertices:  ['V05', 'V06', 'V08c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam82, G1 G2 G3 G4 G7b G8
+    Valid when: [n >= 18, m >= 0, n%2 == 0, m%3 == 1, m > n - 1, m >= (6*n - 3)/5, m >= (6*n)/5, m > n + 1, m < (3*n)/2 - 2]
+    Vertices:  ['V06', 'V08c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam83, G1 G2 G3 G4 G6
+    Valid when: [n >= 15, m >= 0, n%2 == 1, m%3 == 0, m > n - 1, m >= (6*n - 3)/5, m >= (6*n)/5, m > n, m < (3*n)/2 - 2]
+    Vertices:  ['V05', 'V06', 'V08c', 'V11a', 'V12b', 'V12c']
+Fam84, G1 G2 G3 G4 G6 G8
+    Valid when: [n >= 13, m >= 0, n%2 == 1, m%3 == 1, m > n - 1, m >= (6*n - 3)/5, m >= (6*n)/5, m > n, m < (3*n)/2 - 2]
+    Vertices:  ['V05', 'V06', 'V08c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam85, G1 G2 G3 G4 G7b G9
+    Valid when: [n >= 14, m >= 0, n%2 == 0, m%3 == 2, m > n - 1, m >= (6*n - 3)/5, m >= (6*n)/5, m > n + 1, m < (3*n)/2 - 2]
+    Vertices:  ['V06', 'V08c', 'V11a', 'V11b', 'V11c', 'V12b', 'V12c']
+Fam86, G1 G2 G3 G4 G7b
+    Valid when: [n >= 10, m >= 0, n%2 == 0, m%3 == 0, m > n - 1, m >= (6*n - 3)/5, m >= (6*n)/5, m > n + 1, m < (3*n)/2 - 2]
+    Vertices:  ['V06', 'V08c', 'V11a', 'V12b', 'V12c']
