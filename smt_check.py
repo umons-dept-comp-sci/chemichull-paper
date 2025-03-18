@@ -3,8 +3,8 @@ import z3
 import sympy
 import points
 
-MIN_CHECK = 83
-MAX_CHECK = 83
+MIN_CHECK = 80
+MAX_CHECK = 100
 
 """
 Defines unsupported operators for sympy to convert in z3
@@ -47,9 +47,15 @@ def check_intersection(conditions, equalities, other_facets):
     z3_constraints = conditions
     # We check if there exists n and m such that one of the facets is not satisfied but the conditions are.
     # Equivalently, for all n and m, either the conditions are not satisfied or all the facets are satisfied.
+    solver.push()
     solver.add(z3.And([z3.Not(z3.And([*z3_facets])), *z3_constraints]))
     res = solver.check()
-    return res == z3.unsat, r
+    sometimes = False
+    if res == z3.sat:
+        solver.pop()
+        solver.add(z3.And(*z3_facets, *z3_constraints))
+        sometimes = solver.check() == z3.sat
+    return res == z3.unsat, r, sometimes
 
 
 def check_vertex(point, inter, conds):
@@ -66,6 +72,37 @@ def check_vertex(point, inter, conds):
     else:
         return solver.model()
 
+def check_sometimes_vertex(point, inter, conds):
+    n,m = z3.Ints("n m")
+    solver = z3.Solver()
+    points = sympy.smtlib_code([sympy.Eq(point[i], inter[i]) for i in range(3)])
+    points = z3.parse_smt2_string(points)
+    z3_constraints = conds
+    solver.add(z3.And([*points, *z3_constraints]))
+    res = solver.check()
+    if res == z3.unsat:
+        return False, None
+    mod = solver.model()
+    return True, (mod.eval(n), mod.eval(m))
+
+def find_incorrect_facet(inter, facets, equalities, conds, other_facets_indices):
+    solver = z3.Solver()
+    # replaces m12, m13, m33 with their values in r
+    r_facets = [facet.subs(inter) for facet in facets]
+    r_equalities = [eq.subs(inter) for eq in equalities]
+    z3_facets = z3.parse_smt2_string(sympy.smtlib_code(r_facets))
+    z3_equalities = z3.parse_smt2_string(sympy.smtlib_code(r_equalities))
+    z3_constraints = conds
+    # We check if there exists n and m such that one of the facets is not satisfied but the conditions are.
+    # Equivalently, for all n and m, either the conditions are not satisfied or all the facets are satisfied.
+    incorrect_facets = []
+    for i, facet in enumerate(z3_facets):
+        solver.push()
+        solver.add(z3.And([z3.Not(facet), *z3_equalities, *z3_constraints]))
+        if solver.check() == z3.unsat:
+            incorrect_facets.append(other_facets_indices[i])
+        solver.pop()
+    return incorrect_facets
 
 def check_fam(fam, index):
     if index < MIN_CHECK or index > MAX_CHECK:
@@ -86,15 +123,17 @@ def check_fam(fam, index):
                 facets = orig_facets[:]
                 equalities = []
                 other_facets = []
+                other_facets_indices = []
                 for l in range(len(facets)):
                     # replace the three by equalities
                     if l in [i, j, k]:
                         equalities.append(sympy.Eq(facets[l], 0))
                     else:
                         other_facets.append(facets[l] >= 0)
+                        other_facets_indices.append(l)
                 facets = equalities + other_facets
                 # If they have an intersection that falls inside the polytope we check that at least one point satisfies the facets and the conditions
-                valid, inter = check_intersection(conds, equalities, other_facets)
+                valid, inter, sometimes = check_intersection(conds, equalities, other_facets)
                 print(
                     f"        Intersection of {alls[i]}, {alls[j]}, {alls[k]}: {inter}"
                 )
@@ -122,7 +161,20 @@ def check_fam(fam, index):
                             print(p, end=" ")
                         print()
                 else:
-                    print("            Invalid")
+                    incorrect_facets = find_incorrect_facet(inter, other_facets, equalities, conds, other_facets_indices)
+                    if incorrect_facets:
+                        print("            Invalid facets:", [alls[i] for i in incorrect_facets])
+                    if sometimes:
+                        inter = [inter[i] for i in [m12, m13, m33]]
+                        sometimes_points = []
+                        for p, point in enumerate(points_data):
+                            res, mod = check_sometimes_vertex(point, inter, conds)
+                            if res:
+                                sometimes_points.append(f"{point_names[p]} (n={mod[0]}, m={mod[1]})")
+                        if sometimes_points:
+                            print("            Sometimes valid for points:", sometimes_points)
+                    else:
+                        print("            Invalid")
     return True
 
 
