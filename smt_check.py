@@ -1,9 +1,9 @@
-from families import families, FDI
+from families import FDI, FAMILIES, GENERAL_CONDS
 import z3
 import sympy
 import points
 
-MIN_CHECK = 80
+MIN_CHECK = 0
 MAX_CHECK = 100
 
 """
@@ -50,12 +50,16 @@ def check_intersection(conditions, equalities, other_facets):
     solver.push()
     solver.add(z3.And([z3.Not(z3.And([*z3_facets])), *z3_constraints]))
     res = solver.check()
+    counter = None
     sometimes = False
     if res == z3.sat:
+        n,m = z3.Ints("n m")
+        mod = solver.model()
+        counter = (mod.eval(n), mod.eval(m))
         solver.pop()
         solver.add(z3.And(*z3_facets, *z3_constraints))
         sometimes = solver.check() == z3.sat
-    return res == z3.unsat, r, sometimes
+    return res == z3.unsat, r, sometimes, counter
 
 
 def check_vertex(point, inter, conds):
@@ -109,12 +113,13 @@ def check_fam(fam, index):
         return True
     alls = fam[0]
     orig_facets = [FDI[f] for f in alls]
-    conds = fam[1]
+    conds = fam[1] + GENERAL_CONDS
     print("    Valid when:", conds)
     # point_names = fam[2]
     # print("    Vertices: ", point_names)
     # points = [get_point(name) for name in point_names]
     m12, m13, m33 = sympy.symbols("m12 m13 m33", integer=True)
+    all_points = []
 
     # For each triplet of facet
     for i in range(len(orig_facets)):
@@ -133,7 +138,7 @@ def check_fam(fam, index):
                         other_facets_indices.append(l)
                 facets = equalities + other_facets
                 # If they have an intersection that falls inside the polytope we check that at least one point satisfies the facets and the conditions
-                valid, inter, sometimes = check_intersection(conds, equalities, other_facets)
+                valid, inter, sometimes, counter = check_intersection(conds, equalities, other_facets)
                 print(
                     f"        Intersection of {alls[i]}, {alls[j]}, {alls[k]}: {inter}"
                 )
@@ -156,32 +161,35 @@ def check_fam(fam, index):
                             print(point_names[i], ":", res)
                         return False
                     else:
+                        all_points.append(valid_points)
                         print("            ", end="")
                         for p in valid_points:
                             print(p, end=" ")
                         print()
                 else:
                     incorrect_facets = find_incorrect_facet(inter, other_facets, equalities, conds, other_facets_indices)
-                    if incorrect_facets:
-                        print("            Invalid facets:", [alls[i] for i in incorrect_facets])
-                    if sometimes:
+                    if not sometimes:
+                        print("            Always invalid")
+                        print(f"            Example: n={counter[0]}, m={counter[1]}")
+                    else:
                         inter = [inter[i] for i in [m12, m13, m33]]
                         sometimes_points = []
                         for p, point in enumerate(points_data):
                             res, mod = check_sometimes_vertex(point, inter, conds)
                             if res:
                                 sometimes_points.append(f"{point_names[p]} (n={mod[0]}, m={mod[1]})")
-                        if sometimes_points:
-                            print("            Sometimes valid for points:", sometimes_points)
-                    else:
-                        print("            Invalid")
+                        print("            Sometimes valid for points:", sometimes_points)
+                        print(f"            Not when n={counter[0]}, m={counter[1]}")
+                    if incorrect_facets:
+                        print("            Invalid facets:", [alls[i] for i in incorrect_facets])
+    print("        All points:", all_points)
     return True
 
 
 if __name__ == "__main__":
     i = 0
-    for k in range(len(families)):
+    for k in range(len(FAMILIES)):
         i += 1
-        print(f"Fam{i}, {" ".join(families[k][0])}")
-        if not check_fam(families[k], i):
+        print(f"Fam{i}, {" ".join(FAMILIES[k][0])}")
+        if not check_fam(FAMILIES[k], i):
             print("ERROR")
