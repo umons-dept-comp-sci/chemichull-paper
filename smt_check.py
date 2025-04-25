@@ -1,22 +1,21 @@
-import sys
 import argparse
-import time
-
 import multiprocessing as mp
+import sys
+import time
+from typing import Any, assert_type
 
-import z3
 import sympy
-
-from families import FDI, FAMILIES, GENERAL_CONDS
+import z3
 
 import points
+from families import FAMILIES, FDI, GENERAL_CONDS
 
 MIN_CHECK: int = 43
 MAX_CHECK: int = 100
 INDENT: str = " " * 4
 TIMEOUT: int = 0
 INTERSECTION_TIMEOUT: int = 10 * 60
-DEBUG: bool = False
+DEBUG: bool = True
 
 
 """
@@ -32,27 +31,35 @@ known_functions[sympy.Pow] = "^"
 """
 Symbols used by sympy.
 """
-ns, ms, m12s, m13s, m33s, l12s, l13s, l33s, r12s, r13s, r33s = sympy.symbols("n m m12 m13 m33 l12 l13 l33 r12 r13 r33", integer=True)
+ns, ms, m12s, m13s, m33s, l12s, l13s, l33s, r12s, r13s, r33s = sympy.symbols(
+    "n m m12 m13 m33 l12 l13 l33 r12 r13 r33", integer=True
+)
 
 """
 Symbols used by z3.
 """
-n, m, m12, m13, m33, l12, l13, l33, r12, r13, r33 = z3.Ints("n m m12 m13 m33 l12 l13 l33 r12 r13 r33")
+n, m, m12, m13, m33, l12, l13, l33, r12, r13, r33 = z3.Ints(
+    "n m m12 m13 m33 l12 l13 l33 r12 r13 r33"
+)
 
-def get_point(name: str):
+
+def get_point(name: str) -> tuple[Any, Any, Any]:
     """
     Small function that calls the right get_R function based on name
     """
     func_name = f"get_R{name}"
     func = getattr(points, func_name)
     if callable(func):
-        return func(ns, ms)
+        res = func(ns, ms)
+        assert_type(res, tuple[Any, Any, Any])
+        return res
+
     else:
         raise Exception("Function not found")
 
 
-POINT_NAMES = points.points
-POINTS_DATA = [get_point(p) for p in POINT_NAMES]
+POINT_NAMES: list[str] = points.points
+POINTS_DATA: list[tuple[Any, Any, Any]] = [get_point(p) for p in POINT_NAMES]
 
 
 def print_debug(indent: int, txt: str):
@@ -61,47 +68,71 @@ def print_debug(indent: int, txt: str):
         print(now, txt, file=sys.stderr)
 
 
-def check_intersection(conditions, equalities, other_facets):
+def check_intersection_validity(
+    intersection: dict[Any, Any],
+    equalities: list[Any],
+    other_facets: list[Any],
+    conditions: list[Any],
+):
+    """
+    Checks wheter there exists a pair n and m such that the intersection is
+    outside of the polytope while the existential conditions of the polytope are
+    satisfied.
+    """
+    facets = [facet.subs(intersection) for facet in equalities + other_facets]
+    z3_facets = z3.parse_smt2_string(sympy.smtlib_code(facets))
+    z3_constraints = conditions
+    solver = z3.Solver()
+    # We check if there exists n and m such that one of the facets is not satisfied but the conditions are.
+    # Equivalently, for all n and m, either the conditions are not satisfied or all the facets are satisfied.
+    solver.add(z3.And([z3.Not(z3.And([*z3_facets])), *z3_constraints]))
+    print_debug(3, "Checking valid intersection")
+    invalid = solver.check() == z3.sat
+    counter = None
+    if invalid:
+        mod = solver.model()
+        counter = (mod.eval(n), mod.eval(m))
+    return invalid, counter
+
+
+def check_intersection_non_empty(
+    intersection: dict[Any, Any], conditions: list[Any]
+) -> bool:
+    """
+    If no invalide pair n,m was found, check whether there exists at least one
+    valid pair. That is, whether it is a fractional point (thus invalid) or not.
+    """
+    solver = z3.Solver()
+    solver.add(conditions)
+    # Check if there exists n and m such that all three are integers
+    for v in [m12s, m13s, m33s]:
+        eq = sympy.Eq(v, intersection[v])
+        solver.add(z3.parse_smt2_string(sympy.smtlib_code(eq)))
+    solver.add(m12 >= 0, m13 >= 0, m33 >= 0)
+    print_debug(3, "checking integer")
+    return solver.check() == z3.unsat
+
+
+def check_intersection(
+    conditions: list[Any], equalities: list[Any], other_facets: list[Any]
+):
     """
     Checks if there exists an intersection between the three chosen facets
     (replaced by equalities) that satisfies all other facets and the polytope conditions.
     """
     # Computes the intersection
-    r = sympy.solve(equalities, m12s, m13s, m33s)
-    print(INDENT * 2, "Coordinates: " + str(r))
+    inter = sympy.solve(equalities, m12s, m13s, m33s)
+    print(INDENT * 2, "Coordinates: " + str(inter))
     # If no intersection, we just return false
-    if r == []:
+    if inter == []:
         return False, None, None, False
-    solver = z3.Solver()
-    facets = [facet.subs(r) for facet in equalities + other_facets]
-    z3_facets = z3.parse_smt2_string(sympy.smtlib_code(facets))
-    z3_constraints = conditions
-    # We check if there exists n and m such that one of the facets is not satisfied but the conditions are.
-    # Equivalently, for all n and m, either the conditions are not satisfied or all the facets are satisfied.
-    solver.push()
-    solver.add(z3.And([z3.Not(z3.And([*z3_facets])), *z3_constraints]))
-    print_debug(3, "Checking valid intersection")
-    print(solver)
-    res = solver.check()
-    counter = None
-    if res == z3.sat:
-        mod = solver.model()
-        counter = (mod.eval(n), mod.eval(m))
-    solver.pop()
-    if res == z3.unsat:
-        # replaces m12, m13, m33 with their values in r
-        solver.push()
-        solver.add(conditions)
-        # Check if there exists n and m such that all three are integers
-        for v in [m12s, m13s, m33s]:
-            eq = sympy.Eq(v, r[v])
-            solver.add(z3.parse_smt2_string(sympy.smtlib_code(eq)))
-        solver.add(m12 >= 0, m13 >= 0, m33 >= 0)
-        print_debug(3, "checking integer")
-        if solver.check() == z3.unsat:
-            return False, r, None, True
-        solver.pop()
-    return res == z3.unsat, r, counter, False
+    invalid, counter = check_intersection_validity(
+        inter, equalities, other_facets, conditions
+    )
+    empty = False
+    if not invalid:
+        empty = check_intersection_non_empty(inter, conditions)
+    return not invalid, inter, counter, empty
 
 
 def check_vertex(point, inter, conds):
