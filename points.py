@@ -1,4 +1,4 @@
-def get_RV01(n, m):
+def get_RV01(n: int, m: int) -> tuple[int, int, int]:
     return (0, 0, 0)
 
 
@@ -241,7 +241,7 @@ points = [
     "V01",
     "V02",
     "V03",
-    "V04",
+    # "V04",
     "V06",
     "V07a",
     "V07b",
