@@ -10,12 +10,12 @@ import z3
 import points
 from families import FAMILIES, FDI, GENERAL_CONDS
 
-MIN_CHECK: int = 43
-MAX_CHECK: int = 100
+MIN_CHECK: int = 0
+MAX_CHECK: float = float("inf")
 INDENT: str = " " * 4
 TIMEOUT: int = 0
 INTERSECTION_TIMEOUT: int = 10 * 60
-DEBUG: bool = True
+DEBUG: bool = False
 
 
 """
@@ -132,11 +132,14 @@ def check_intersection(
     empty = False
     if not invalid:
         empty = check_intersection_non_empty(inter, conditions)
+        invalid = empty
     return not invalid, inter, counter, empty
 
 
-def check_vertex(point, inter, conds):
-    solver = z3.Solver()
+def generate_points_equalities(point, inter):
+    """
+    Generates equalities with one of the lij or rij variables for each component of the point and the intersection.
+    """
     points = []
     for i, pair in enumerate([(l12s, r12s), (l13s, r13s), (l33s, r33s)]):
         eq = z3.parse_smt2_string(
@@ -168,10 +171,19 @@ def check_vertex(point, inter, conds):
             },
         )
         points.append(eq[0])
-    z3_constraints = conds
+    return points
+
+
+def check_vertex_integer(points, z3_constraints):
+    """
+    Verifies that a given point corresponds to at least one integer point.
+
+    Returns (True,None) if the point can be integer and False as well as a
+    message
+    """
+    solver = z3.Solver()
     # We check if there exists n and m such that the conditions are satisfied but one of the facets is not satisfied.
     # Equivalently, for all n and m, either the conditions are not satisfied or all the facets are satisfied.
-    solver.push()
     solver.add(
         l12 == r12,
         l13 == r13,
@@ -187,8 +199,18 @@ def check_vertex(point, inter, conds):
     )
     print_debug(4, "Checking integer")
     if solver.check() != z3.sat:
-        return "No integer value"
-    solver.pop()
+        return False, "No integer value"
+    else:
+        return True, None
+
+def check_vertex_equal(points, z3_constraints):
+    """
+    Verifies that a given point is equal to the intersection of the three facets
+    for each valid order and size given by the conditions.
+
+    Returns (True,None) if the point is equal and False as well as a counter-example otherwise
+    """
+    solver = z3.Solver()
     solver.add(
         z3.And(
             [
@@ -215,9 +237,25 @@ def check_vertex(point, inter, conds):
     print_debug(4, "Checking equality")
     res = solver.check()
     if res == z3.unsat:
-        return None
+        return True, None
     else:
-        return solver.model()
+        return False, solver.model()
+
+
+def check_vertex(point, inter, conds) -> tuple[bool, Any]:
+    """
+    Verifies that a given point is equal to the intersection of the three facets
+    for each valid order and size given by the conditions.
+
+    Returns (True,None) if the point is equal and False as well as a counter-example otherwise
+    """
+    solver = z3.Solver()
+    z3_constraints = conds
+    points = generate_points_equalities(point, inter)
+    res, msg = check_vertex_integer(points, z3_constraints)
+    if not res:
+        return False, msg
+    return check_vertex_equal(points, z3_constraints)
 
 
 def check_triplet(
@@ -235,12 +273,13 @@ def check_triplet(
         valid_points = []
         for p, point in enumerate(POINTS_DATA):
             print_debug(3, "Checking point " + POINT_NAMES[p])
-            res = check_vertex(point, inter, conds)
-            if res is None:
+            res, msg = check_vertex(point, inter, conds)
+            if res:
+                print_debug(4, "Valid")
                 valid_points.append(POINT_NAMES[p])
                 ok = True
             else:
-                results.append(res)
+                results.append(msg)
         if not ok:
             error = True
             print("Error for facets", alls[i], alls[j], alls[k])
@@ -361,7 +400,7 @@ def check_fam(fam):
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("MIN", type=int, nargs="?", default=0)
-    parser.add_argument("MAX", type=int, nargs="?", default=100)
+    parser.add_argument("MAX", type=int, nargs="?", default=float("inf"))
     args = parser.parse_args()
     return args.MIN, args.MAX
 
@@ -381,3 +420,4 @@ if __name__ == "__main__":
                 p.join()
             if p.is_alive():
                 p.kill()
+                print(INDENT, "TIMEOUT")
