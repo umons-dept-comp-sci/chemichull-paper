@@ -261,6 +261,10 @@ def check_vertex(point, inter, conds) -> tuple[bool, Any]:
 def check_triplet(
     conds, equalities, other_facets, alls, i, j, k, all_points, set_points
 ):
+    """
+    Checks whether a triplet of facets corresponds to a point of the
+    polytope for every n and m that satisfies the conditions.
+    """
     # If they have an intersection that falls inside the polytope we check that at least one point satisfies the facets and the conditions
     error = False
     valid, inter, counter, floating = check_intersection(
@@ -271,6 +275,7 @@ def check_triplet(
         ok = False
         inter = [inter[i] for i in [m12s, m13s, m33s]]
         valid_points = []
+        # Check if at least one point corresponds to the intersection
         for p, point in enumerate(POINTS_DATA):
             print_debug(3, "Checking point " + POINT_NAMES[p])
             res, msg = check_vertex(point, inter, conds)
@@ -311,6 +316,9 @@ def check_triplet(
 def check_triplet_queue(
     conds, equalities, other_facets, alls, i, j, k, all_points, set_points, queue
 ):
+    """
+    Wrapper that writes the result in a queue
+    """
     res = check_triplet(
         conds, equalities, other_facets, alls, i, j, k, all_points, set_points
     )
@@ -320,6 +328,9 @@ def check_triplet_queue(
 def check_triplet_timeout(
     conds, equalities, other_facets, alls, i, j, k, all_points, set_points
 ):
+    """
+    Wrapper spawning a process to allow a timeout when checking a triplet.
+    """
     if INTERSECTION_TIMEOUT > 0:
         q = mp.SimpleQueue()
         p = mp.Process(
@@ -356,7 +367,7 @@ def check_triplet_timeout(
         return res, all_points, set_points
 
 
-def check_fam(fam):
+def check_family(fam):
     alls = fam[0]
     orig_facets = [FDI[f] for f in alls]
     conds = fam[1] + GENERAL_CONDS
@@ -412,7 +423,7 @@ if __name__ == "__main__":
         i += 1
         if MIN_CHECK <= i <= MAX_CHECK:
             print(f"Fam{i}, {" ".join(FAMILIES[k][0])}")
-            p = mp.Process(target=check_fam, args=(FAMILIES[k],))
+            p = mp.Process(target=check_family, args=(FAMILIES[k],))
             p.start()
             if TIMEOUT > 0:
                 p.join(TIMEOUT)
